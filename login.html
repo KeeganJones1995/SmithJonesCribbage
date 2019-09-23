@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<head>
+	<title> Smith Jones Cribbage </title>
+	<script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+</head>
+<body style="background: url('Images/backgroundLogin.png') no-repeat center center fixed; background-size: 100% 100%">
+	<script src="createBoard.js"></script>
+	<script src="p2pConnection.js"></script>
+	<script src="gameSrc.js"></script>
+	<script src="scoring.js"></script>
+	<input type="text" id="nameInput">
+	<button type="button" name="btn" onclick="startGame()" id="btnId">Let's Play</button>
+	<button type="button" name="btn" onclick="ready()" id="readyBtn">Ready</button>
+	<div id="msgDisplay"></div>
+	<input type="text" id="msgInput">
+	<button type="button" id="msgBtn" onclick="sendText()">Send</button>
+	<span id="urScore"></span>
+	<span id="theirScore"></span>
+	<form action="">
+		<input type="radio" id="blueSelect" value="Blue">
+		<label id="blueLabel">Blue</label>
+		<input type="radio" id="whiteSelect" value="White">
+		<label id="whiteLabel">White</label>
+		<input type="radio" id="redSelect" value="Red">
+		<label id="redLabel">Red</label>
+	</form>
+	<img src="Images/crib.png" id="p1Crib" class="cribs">
+	<img src="Images/crib.png" id="p2Crib" class="cribs"> 
+	<img id="playerCard1" class="pCard" onclick="cardClick(this)">
+	<img id="playerCard2" class="pCard" onclick="cardClick(this)">
+	<img id="playerCard3" class="pCard" onclick="cardClick(this)">
+	<img id="playerCard4" class="pCard" onclick="cardClick(this)">
+	<img id="playerCard5" class="pCard" onclick="cardClick(this)">
+	<img id="playerCard6" class="pCard" onclick="cardClick(this)">
+	<img id="oppCard1" class="pCard">
+	<img id="oppCard2" class="pCard">
+	<img id="oppCard3" class="pCard">
+	<img id="oppCard4" class="pCard">
+	<img id="oppCard5" class="pCard">
+	<img id="oppCard6" class="pCard">
+	<img id="cribCard1" class="pCard">
+	<img id="cribCard2" class="pCard">
+	<img id="cribCard3" class="pCard">
+	<img id="cribCard4" class="pCard">
+	<img id="flipCard" class="pCard">
+	<img id="coverCard1" class="coverCards" src="Images/back.jpg">
+	<img id="coverCard2" class="coverCards" src="Images/back.jpg">
+	<span id="statusText"></span>
+	<span id="count"></span>
+	<style>
+		input[type=radio]{
+			position: absolute;
+			top: 36%;
+		}
+		#blueSelect{
+			left: 35.6%;
+		}
+		#whiteSelect{
+			left: 45.766666667%;
+		}
+		#redSelect{
+			left: 55.933333337%;
+		}
+		#blueLabel{
+			position: absolute;
+			top: 35.5%;
+			left: 38%;
+			color: #0026ff;
+			font-family : Mistral;
+			font-size: 1.5vw;
+		}
+		#whiteLabel{
+			position: absolute;
+			top: 35.5%;
+			left: 48.166666667%;
+			color: #ffffff;
+			font-family : Mistral;
+			font-size: 1.5vw;
+		}
+		#redLabel{
+			position: absolute;
+			top: 35.5%;
+			left: 58.333333333%;
+			color: #ff3a47;
+			font-family : Mistral;
+			font-size: 1.5vw;
+		}
+		input[type=text]{
+			position: absolute;
+			top: 38.5%;
+			left: 35.7%;
+			width: 22%;
+		}
+		#btnId{
+			position: absolute;
+			top: 38.5%;
+			left: 57.9%;
+			width: 8.5%;
+			font-family : Mistral;
+		}
+		#readyBtn{
+			background-color: 5AA6FF;
+			position: absolute;
+			top: 37.5%;
+			left: 83.5%;
+			width: 7.5%;
+			height: 5%;
+			display: none;
+			border-radius: 6px;
+			border: 2px solid #000000;
+			font-family : Mistral;
+			font-size: 2vw;
+			color : #ff3a47;
+			background-color : #777777;
+		}
+		.cribs{
+			display: none;
+			opacity: 0.5;
+			filter: alpha(opacity=50);
+		}
+		#p1Crib{
+			position: absolute;
+			left: 96%;
+			top: 7.33333333%;
+			width: 4%;
+			height: 5.333333%;
+		}
+		#p2Crib{
+			position: absolute;
+			left: 96%;
+			top: 67.3333333%;
+			width: 4%;
+			height: 5.333333%;
+		}
+		.pCard{
+			position: absolute;
+			width: 7.5%;
+			height: 14%;
+			display: none;
+		}		
+		#msgDisplay{
+			position: absolute;
+			top: 75.33333%;
+			left: 36.5%;
+			width: 62%;
+			height: 20.66667%;
+			background-color: #777777;
+			border: 2px solid #000000;
+			overflow: auto;
+			display: none;
+		}
+		#msgInput{
+			position: absolute;
+			top: 96.5%;
+			left: 36.5%;
+			width: 40%;
+			height: 2%;
+			display: none;
+		}
+		#msgBtn{
+			position: absolute;
+			top: 96.4%;
+			left: 76.8%;
+			width: 22%;
+			height: 2.7%;
+			display: none;
+			border: 2px solid #000000;
+			font-family : Mistral;
+			font-size: 1.5vw;
+			color : #ff3a47;
+			background-color : #777777;
+		}
+		.blueText{
+			color: #0026ff;
+		}
+		.whiteText{
+			color: #ffffff;
+		}
+		.redText{
+			color: #ff3a47;
+		}
+		.coverCards{
+			display: none;
+			position: absolute;
+			left: 92.2%;
+			width: 7.5%;
+			height: 14%;
+		}
+	</style>
+</body>
+</html>
