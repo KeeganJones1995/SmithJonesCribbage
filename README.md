@@ -1,6 +1,6 @@
 # SmithJonesCribbage
 An online peer-to-peer cribbage game using Javascript, HTML, and basic CSS
-Simply go to mackavellidajones.github.io/SmithJonesCribbage/login.html on two different browsers
+Simply go to mackavellidajones.github.io/SmithJonesCribbage/login on two different browsers
 Do not hit lets play until both people are at the start screen.
 WORK IN PROGRESS
 ***Disclaimer***
