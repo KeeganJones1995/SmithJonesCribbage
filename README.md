@@ -4,8 +4,8 @@ Simply go to mackavellidajones.github.io/SmithJonesCribbage/login.html on two di
 Do not hit lets play until both people are at the start screen.
 WORK IN PROGRESS
 ***Disclaimer***
-This is NOT a finished product.  This is up to display what I have done so far. As of September 23rd 2019, I am close to finishing but still have a few bugs to fix and a few minor features to implement.  As hte game play is working as I want i to but I am hung up on this bug causing the browser to become unresponsive when the game transitions rounds.
-Such as:
+This is NOT a finished product.  This is up to display what I have done so far. As of September 23rd 2019, I am close to finishing but still have a few bugs to fix and a few minor features to implement.  The game play is working as I want it to but I am hung up on this bug causing the browser to become unresponsive when the game transitions rounds.
+Other things still to be done are:
 -fix bug causing browser to become non-responsive upon starting of a new round of play	
 -reduce/eliminate global variables
 -work on connectivity issues(e.g. user discconnects mid game etc.)
